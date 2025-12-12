@@ -2,7 +2,7 @@
     "data_source": "/home/xsvenda/public_html/cjs/nightly/",
     "image_url": "https://www.fi.muni.cz/~xsvenda/cjs/nightly/",
     "thumbnail_url": "https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/",
-    "web_base": "https://crocs-muni.github.io/coinjoin",
+    "web_base": "https://crocs-muni.github.io/coinjoin/",
     "whitelist": ["input_types_nums_notnorm.png", "input_types_nums_norm.png", "input_types_values_norm.png", "input_types_values_notnorm.png"],
     "pages":{
         "index":{
