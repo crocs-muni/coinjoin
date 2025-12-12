@@ -1,0 +1,670 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>CoinJoin Statistics</title>
+        <base href="https://crocs-muni.github.io/coinjoin"/>
+        <link rel="stylesheet" href="style.css?v2" />
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+        </head>
+        <body>
+            <p class=banner>This is a nightly build. If nightly is broken, visit a stable version: <a href=https://crocs-muni.github.io/coinjoin/stable/index.html>https://crocs-muni.github.io/coinjoin/stable/index.html</a></p>
+            <header>
+            <h1>CoinJoin Statistics</h1>
+            <p class="update">Last updated: 12-12-2025</p>
+
+            <nav class="menu">
+            <ul>
+        <li><a href="index.html" class="  " >Overview</a></li><li><a href="wasabi2/wasabi2.html" class="current  active" >Wasabi 2</a></li><li><a href="wasabi1/wasabi1.html" class="  " >Wasabi 1</a></li><li><a href="whirlpool/whirlpool.html" class="  active" >Whirlpool</a></li>
+            </ul>
+            </nav>
+        <div id='subnav'> <ul><li><a href="wasabi2/wasabi2.html" class=" " >All coordinators</a></li><li><a href="wasabi2/wasabi2_zksnacks.html" class=" " >zkSNACKs</a></li><li><a href="wasabi2/wasabi2_kruw.html" class=" active" >kruw.io</a></li><li><a href="wasabi2/wasabi2_opencoordinator.html" class="current active" >opencoordinator.io</a></li><li><a href="wasabi2/wasabi2_gingerwallet.html" class=" active" >gingerwallet.io</a></li><li><a href="wasabi2/wasabi2_coinjoin_nl.html" class=" active" >coinjoin.nl</a></li><li><a href="wasabi2/wasabi2_btip.html" class=" " >btip.nl</a></li><li><a href="wasabi2/wasabi2_mega.html" class=" " >mega.cash</a></li><li><a href="wasabi2/wasabi2_wasabicoordinator.html" class=" " >wasabicoordinator.io</a></li><li><a href="wasabi2/wasabi2_wasabist.html" class=" " >wasabist.io</a></li><li><a href="wasabi2/wasabi2_unknown_2024_e85631.html" class=" " >unknown_2024_e85631</a></li><li><a href="wasabi2/wasabi2_unknown_2024_28ce7b.html" class=" " >unknown_2024_28ce7b</a></li></div> </ul>
+            </header>
+        <img src="legend.png" alt="legend" id="legend" />
+        <div id="containers">
+        <div class="container"><div class="text"><section class="cjseg" aria-label="Liquidity summary">
+          
+        <style>
+        .cjseg { --fg:#111; --bg:#fff; --muted:#666; --line:#e5e7eb; --accent:#111; font-family: ui-sans-serif, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; color:var(--fg);}
+        .cjseg .cjseg-header { margin-bottom: 12px; }
+        .cjseg h2 { margin: 0; font-size: 1.35rem; font-weight: 700; line-height: 1.3; }
+        .cjseg .sub { color: var(--muted); margin-top: 2px; font-size: 0.9rem; }
+        .cjseg .meta { margin-top: 6px; font-size: 0.95rem; }
+        .cjseg .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 10px; }
+
+        /* Cards */
+        .cjseg .card { border: 1px solid var(--line); border-radius: 8px; padding: 10px; background: var(--bg); }
+        .cjseg .card-title { font-weight: 600; margin-bottom: 6px; }
+        .cjseg .card-body { display: grid; gap: 4px; }
+        .cjseg .kv { display: flex; justify-content: space-between; gap: 10px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 0.92rem; }
+        .cjseg .kv .k { color: var(--muted); }
+        .cjseg .kv .v { font-weight: 600; }
+
+        /* Tabs (single) */
+        .cjseg .tabs { display: flex; gap: 6px; border-bottom: 1px solid var(--line); margin: 10px 0 8px; }
+        .cjseg .tab { background: transparent; border: none; padding: 6px 8px; font-weight: 600; cursor: default; color: var(--fg); border-bottom: 2px solid var(--fg); }
+        .cjseg .tab-panels { margin-top: 4px; }
+        .cjseg .tab-panel { display: none; }
+        .cjseg .tab-panel.show { display: block; }
+
+        /* IO panel */
+        .cjseg .io-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 10px; }
+        .cjseg .io-col { border: 1px solid var(--line); border-radius: 8px; padding: 10px; }
+        .cjseg .io-col .over { font-weight: 600; margin-bottom: 2px; }
+        .cjseg .io-col .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 0.98rem; }
+        .cjseg .io-col .under { color: var(--muted); font-size: 0.85rem; margin-top: 2px; }
+
+        .cjseg .foot { margin-top: 8px; color: var(--muted); font-size: 0.85rem; }
+        </style>
+        
+          
+        <div class="cjseg-header">
+          <div class="meta">Total coinjoins: <b>15485</b></div>
+          <div class="meta">Period         : <b>2024-07-06 02:25:48.000 <a href="https://mempool.space/tx/1c875d73ff53f221072432fdfd1a3f666a4a5e0dccb4021beb535537ccd36baa">(tx)</a> — 2025-12-11 22:40:08.000 <a href="https://mempool.space/tx/d4857fe3f160f9b2290f301359207409cf31287f4ca40e8279c0b721adafa1bd">(tx)</a></b></div>
+        </div>
+        
+
+          
+        <div class="tabs" role="tablist" aria-label="Stats tabs">
+          <button class="tab active" role="tab" aria-selected="true" tabindex="0">Inputs &amp; Outputs</button>
+        </div>
+        <div class="tab-panels">
+          <div class="tab-panel show" role="tabpanel">
+            
+          <div class="io-grid">
+            <div class="io-col">
+              <div class="over">Inputs per CJ</div>
+              <div class="mono">15 / 32.5 / 31.0 / 100</div>
+              <div class="under">min / avg / median / max</div>
+            </div>
+            <div class="io-col">
+              <div class="over">Outputs per CJ</div>
+              <div class="mono">11 / 36.5 / 35.0 / 82</div>
+              <div class="under">min / avg / median / max</div>
+            </div>
+          </div>
+        
+          </div>
+        </div>
+        
+
+          <div class="grid">
+            
+        <div class="card">
+          <div class="card-title">Key Ratios</div>
+          <div class="card-body">
+            <span class="kv"><span class="k">Fresh inputs / total inputs</span><span class="v">6897/503888 (1.4%)</span></span><span class="kv"><span class="k">Friends inputs / total inputs</span><span class="v">6542/503888 (1.3%)</span></span><span class="kv"><span class="k">Leaving outputs / total outputs</span><span class="v">61645/565507 (10.9%)</span></span><span class="kv"><span class="k">Staying outputs / total outputs</span><span class="v">8680/565507 (1.5%)</span></span><span class="kv"><span class="k">Staying / non-remix outputs</span><span class="v">8680/70325 (12.3%)</span></span><span class="kv"><span class="k">Remixed inputs / total (numbers)</span><span class="v">490449/503888 (97.3%)</span></span><span class="kv"><span class="k">Remixed inputs / total (values, BTC)</span><span class="v">3498.32/3916.45 (89.3%)</span></span>
+          </div>
+        </div>
+        
+            
+        <div class="card">
+          <div class="card-title">Aggregate Values</div>
+          <div class="card-body">
+            <span class="kv"><span class="k">Fresh inflows (BTC)</span><span class="v">362.54</span></span><span class="kv"><span class="k">Fresh inflows without nonstandard (BTC)</span><span class="v">273.22</span></span><span class="kv"><span class="k">WW1/WW2 mix inflows (BTC)</span><span class="v">55.59</span></span><span class="kv"><span class="k">Unmoved outputs (BTC)</span><span class="v">20.2</span></span><span class="kv"><span class="k">Leaving outputs (BTC)</span><span class="v">344.93</span></span><span class="kv"><span class="k">Nonstandard outputs leaving (BTC)</span><span class="v">89.32</span></span>
+          </div>
+        </div>
+        
+          </div>
+
+        </section></div></div><div class='container'> <div class='large'> 
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly//wasabi2_opencoordinator/wasabi2_opencoordinator_cummul_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t//wasabi2_opencoordinator/wasabi2_opencoordinator_cummul_values_norm.png?v2025-12-12" 
+                alt="/wasabi2_opencoordinator/wasabi2_opencoordinator_cummul_values_norm.png" loading="lazy" />
+            </div> </div>
+    <div class="container">    </div>
+    <h2>Wasabi 2 - opencoordinator.io - December 2025</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-12-01 00-00-00--2026-01-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-12-01 00-00-00--2026-01-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-12-01 00-00-00--2026-01-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-12-01 00-00-00--2026-01-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-12-01 00-00-00--2026-01-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-12-01 00-00-00--2026-01-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-12-01 00-00-00--2026-01-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-12-01 00-00-00--2026-01-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-12-01 00-00-00--2026-01-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-12-01 00-00-00--2026-01-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-12-01 00-00-00--2026-01-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-12-01 00-00-00--2026-01-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Wasabi 2 - opencoordinator.io - November 2025</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-11-01 00-00-00--2025-12-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-11-01 00-00-00--2025-12-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-11-01 00-00-00--2025-12-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-11-01 00-00-00--2025-12-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-11-01 00-00-00--2025-12-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-11-01 00-00-00--2025-12-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-11-01 00-00-00--2025-12-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-11-01 00-00-00--2025-12-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-11-01 00-00-00--2025-12-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-11-01 00-00-00--2025-12-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-11-01 00-00-00--2025-12-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-11-01 00-00-00--2025-12-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Wasabi 2 - opencoordinator.io - October 2025</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-10-01 00-00-00--2025-11-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-10-01 00-00-00--2025-11-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-10-01 00-00-00--2025-11-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-10-01 00-00-00--2025-11-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-10-01 00-00-00--2025-11-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-10-01 00-00-00--2025-11-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-10-01 00-00-00--2025-11-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-10-01 00-00-00--2025-11-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-10-01 00-00-00--2025-11-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-10-01 00-00-00--2025-11-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-10-01 00-00-00--2025-11-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-10-01 00-00-00--2025-11-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Wasabi 2 - opencoordinator.io - September 2025</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-09-01 00-00-00--2025-10-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-09-01 00-00-00--2025-10-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-09-01 00-00-00--2025-10-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-09-01 00-00-00--2025-10-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-09-01 00-00-00--2025-10-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-09-01 00-00-00--2025-10-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-09-01 00-00-00--2025-10-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-09-01 00-00-00--2025-10-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-09-01 00-00-00--2025-10-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-09-01 00-00-00--2025-10-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-09-01 00-00-00--2025-10-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-09-01 00-00-00--2025-10-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Wasabi 2 - opencoordinator.io - August 2025</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-08-01 00-00-00--2025-09-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-08-01 00-00-00--2025-09-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-08-01 00-00-00--2025-09-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-08-01 00-00-00--2025-09-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-08-01 00-00-00--2025-09-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-08-01 00-00-00--2025-09-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-08-01 00-00-00--2025-09-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-08-01 00-00-00--2025-09-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-08-01 00-00-00--2025-09-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-08-01 00-00-00--2025-09-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-08-01 00-00-00--2025-09-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-08-01 00-00-00--2025-09-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Wasabi 2 - opencoordinator.io - July 2025</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-07-01 00-00-00--2025-08-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-07-01 00-00-00--2025-08-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-07-01 00-00-00--2025-08-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-07-01 00-00-00--2025-08-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-07-01 00-00-00--2025-08-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-07-01 00-00-00--2025-08-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-07-01 00-00-00--2025-08-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-07-01 00-00-00--2025-08-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-07-01 00-00-00--2025-08-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-07-01 00-00-00--2025-08-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-07-01 00-00-00--2025-08-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-07-01 00-00-00--2025-08-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Wasabi 2 - opencoordinator.io - June 2025</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-06-01 00-00-00--2025-07-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-06-01 00-00-00--2025-07-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-06-01 00-00-00--2025-07-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-06-01 00-00-00--2025-07-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-06-01 00-00-00--2025-07-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-06-01 00-00-00--2025-07-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-06-01 00-00-00--2025-07-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-06-01 00-00-00--2025-07-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-06-01 00-00-00--2025-07-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-06-01 00-00-00--2025-07-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-06-01 00-00-00--2025-07-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-06-01 00-00-00--2025-07-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Wasabi 2 - opencoordinator.io - May 2025</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-05-01 00-00-00--2025-06-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-05-01 00-00-00--2025-06-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-05-01 00-00-00--2025-06-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-05-01 00-00-00--2025-06-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-05-01 00-00-00--2025-06-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-05-01 00-00-00--2025-06-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-05-01 00-00-00--2025-06-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-05-01 00-00-00--2025-06-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-05-01 00-00-00--2025-06-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-05-01 00-00-00--2025-06-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-05-01 00-00-00--2025-06-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-05-01 00-00-00--2025-06-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Wasabi 2 - opencoordinator.io - April 2025</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-04-01 00-00-00--2025-05-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-04-01 00-00-00--2025-05-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-04-01 00-00-00--2025-05-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-04-01 00-00-00--2025-05-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-04-01 00-00-00--2025-05-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-04-01 00-00-00--2025-05-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-04-01 00-00-00--2025-05-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-04-01 00-00-00--2025-05-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-04-01 00-00-00--2025-05-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-04-01 00-00-00--2025-05-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-04-01 00-00-00--2025-05-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-04-01 00-00-00--2025-05-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Wasabi 2 - opencoordinator.io - March 2025</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-03-01 00-00-00--2025-04-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-03-01 00-00-00--2025-04-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-03-01 00-00-00--2025-04-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-03-01 00-00-00--2025-04-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-03-01 00-00-00--2025-04-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-03-01 00-00-00--2025-04-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-03-01 00-00-00--2025-04-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-03-01 00-00-00--2025-04-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-03-01 00-00-00--2025-04-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-03-01 00-00-00--2025-04-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-03-01 00-00-00--2025-04-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-03-01 00-00-00--2025-04-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Wasabi 2 - opencoordinator.io - February 2025</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-02-01 00-00-00--2025-03-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-02-01 00-00-00--2025-03-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-02-01 00-00-00--2025-03-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-02-01 00-00-00--2025-03-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-02-01 00-00-00--2025-03-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-02-01 00-00-00--2025-03-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-02-01 00-00-00--2025-03-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-02-01 00-00-00--2025-03-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-02-01 00-00-00--2025-03-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-02-01 00-00-00--2025-03-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-02-01 00-00-00--2025-03-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-02-01 00-00-00--2025-03-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Wasabi 2 - opencoordinator.io - January 2025</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-01-01 00-00-00--2025-02-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-01-01 00-00-00--2025-02-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-01-01 00-00-00--2025-02-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-01-01 00-00-00--2025-02-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-01-01 00-00-00--2025-02-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-01-01 00-00-00--2025-02-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-01-01 00-00-00--2025-02-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-01-01 00-00-00--2025-02-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-01-01 00-00-00--2025-02-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2025-01-01 00-00-00--2025-02-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2025-01-01 00-00-00--2025-02-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2025-01-01 00-00-00--2025-02-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Wasabi 2 - opencoordinator.io - December 2024</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2024-12-01 00-00-00--2025-01-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2024-12-01 00-00-00--2025-01-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2024-12-01 00-00-00--2025-01-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2024-12-01 00-00-00--2025-01-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2024-12-01 00-00-00--2025-01-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2024-12-01 00-00-00--2025-01-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2024-12-01 00-00-00--2025-01-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2024-12-01 00-00-00--2025-01-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2024-12-01 00-00-00--2025-01-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2024-12-01 00-00-00--2025-01-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2024-12-01 00-00-00--2025-01-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2024-12-01 00-00-00--2025-01-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Wasabi 2 - opencoordinator.io - November 2024</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2024-11-01 00-00-00--2024-12-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2024-11-01 00-00-00--2024-12-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2024-11-01 00-00-00--2024-12-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2024-11-01 00-00-00--2024-12-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2024-11-01 00-00-00--2024-12-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2024-11-01 00-00-00--2024-12-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2024-11-01 00-00-00--2024-12-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2024-11-01 00-00-00--2024-12-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2024-11-01 00-00-00--2024-12-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2024-11-01 00-00-00--2024-12-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2024-11-01 00-00-00--2024-12-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2024-11-01 00-00-00--2024-12-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Wasabi 2 - opencoordinator.io - October 2024</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2024-10-01 00-00-00--2024-11-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2024-10-01 00-00-00--2024-11-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2024-10-01 00-00-00--2024-11-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2024-10-01 00-00-00--2024-11-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2024-10-01 00-00-00--2024-11-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2024-10-01 00-00-00--2024-11-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2024-10-01 00-00-00--2024-11-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2024-10-01 00-00-00--2024-11-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2024-10-01 00-00-00--2024-11-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2024-10-01 00-00-00--2024-11-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2024-10-01 00-00-00--2024-11-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2024-10-01 00-00-00--2024-11-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Wasabi 2 - opencoordinator.io - September 2024</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2024-09-01 00-00-00--2024-10-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2024-09-01 00-00-00--2024-10-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2024-09-01 00-00-00--2024-10-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2024-09-01 00-00-00--2024-10-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2024-09-01 00-00-00--2024-10-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2024-09-01 00-00-00--2024-10-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2024-09-01 00-00-00--2024-10-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2024-09-01 00-00-00--2024-10-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2024-09-01 00-00-00--2024-10-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2024-09-01 00-00-00--2024-10-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2024-09-01 00-00-00--2024-10-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2024-09-01 00-00-00--2024-10-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Wasabi 2 - opencoordinator.io - August 2024</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2024-08-01 00-00-00--2024-09-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2024-08-01 00-00-00--2024-09-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2024-08-01 00-00-00--2024-09-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2024-08-01 00-00-00--2024-09-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2024-08-01 00-00-00--2024-09-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2024-08-01 00-00-00--2024-09-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2024-08-01 00-00-00--2024-09-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2024-08-01 00-00-00--2024-09-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2024-08-01 00-00-00--2024-09-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2024-08-01 00-00-00--2024-09-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2024-08-01 00-00-00--2024-09-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2024-08-01 00-00-00--2024-09-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Wasabi 2 - opencoordinator.io - July 2024</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2024-07-01 00-00-00--2024-08-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2024-07-01 00-00-00--2024-08-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2024-07-01 00-00-00--2024-08-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2024-07-01 00-00-00--2024-08-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2024-07-01 00-00-00--2024-08-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2024-07-01 00-00-00--2024-08-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2024-07-01 00-00-00--2024-08-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2024-07-01 00-00-00--2024-08-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2024-07-01 00-00-00--2024-08-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2024-07-01 00-00-00--2024-08-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2024-07-01 00-00-00--2024-08-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2024-07-01 00-00-00--2024-08-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Wasabi 2 - opencoordinator.io - June 2024</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2024-06-01 00-00-00--2024-07-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2024-06-01 00-00-00--2024-07-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2024-06-01 00-00-00--2024-07-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2024-06-01 00-00-00--2024-07-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2024-06-01 00-00-00--2024-07-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2024-06-01 00-00-00--2024-07-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2024-06-01 00-00-00--2024-07-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2024-06-01 00-00-00--2024-07-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2024-06-01 00-00-00--2024-07-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2024-06-01 00-00-00--2024-07-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2024-06-01 00-00-00--2024-07-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2024-06-01 00-00-00--2024-07-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Wasabi 2 - opencoordinator.io - May 2024</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2024-05-01 00-00-00--2024-06-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2024-05-01 00-00-00--2024-06-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2024-05-01 00-00-00--2024-06-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2024-05-01 00-00-00--2024-06-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2024-05-01 00-00-00--2024-06-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2024-05-01 00-00-00--2024-06-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2024-05-01 00-00-00--2024-06-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2024-05-01 00-00-00--2024-06-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2024-05-01 00-00-00--2024-06-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/wasabi2_opencoordinator/2024-05-01 00-00-00--2024-06-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/wasabi2_opencoordinator/2024-05-01 00-00-00--2024-06-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png?v2025-12-12" 
+                alt="wasabi2_opencoordinator/2024-05-01 00-00-00--2024-06-01 00-00-00_unknown-static-100-1utxo/wasabi2_opencoordinator_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+
+            </div>
+            <div id="lightbox">
+            <span class="close">&times;</span>
+            <span class="arrow left">&#10094;</span>
+            <img id="lightbox-img" src="" alt="">
+            <span class="arrow right">&#10095;</span>
+            </div>
+            
+            <script src="./js/lightbox.js?v1"></script>
+        </body>
+        </html>
+        

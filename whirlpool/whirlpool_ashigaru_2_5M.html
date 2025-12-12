@@ -1,0 +1,346 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>CoinJoin Statistics</title>
+        <base href="https://crocs-muni.github.io/coinjoin"/>
+        <link rel="stylesheet" href="style.css?v2" />
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+        </head>
+        <body>
+            <p class=banner>This is a nightly build. If nightly is broken, visit a stable version: <a href=https://crocs-muni.github.io/coinjoin/stable/index.html>https://crocs-muni.github.io/coinjoin/stable/index.html</a></p>
+            <header>
+            <h1>CoinJoin Statistics</h1>
+            <p class="update">Last updated: 12-12-2025</p>
+
+            <nav class="menu">
+            <ul>
+        <li><a href="index.html" class="  " >Overview</a></li><li><a href="wasabi2/wasabi2.html" class="  active" >Wasabi 2</a></li><li><a href="wasabi1/wasabi1.html" class="  " >Wasabi 1</a></li><li><a href="whirlpool/whirlpool.html" class="current  active" >Whirlpool</a></li>
+            </ul>
+            </nav>
+        <div id='subnav'> <ul><li><a href="whirlpool/whirlpool.html" class=" " >All pools</a></li><li><a href="whirlpool/whirlpool_ashigaru_2_5M.html" class="current active" >Ashigaru 2.5M sats</a></li><li><a href="whirlpool/whirlpool_ashigaru_25M.html" class=" active" >Ashigaru 25M sats</a></li><li><a href="whirlpool/whirlpool_100k.html" class=" " >Samourai 100k sats</a></li><li><a href="whirlpool/whirlpool_1M.html" class=" " >Samourai 1M sats</a></li><li><a href="whirlpool/whirlpool_5M.html" class=" " >Samourai 5M sats</a></li><li><a href="whirlpool/whirlpool_50M.html" class=" " >Samourai 50M sats</a></li></div> </ul>
+            </header>
+        <img src="legend.png" alt="legend" id="legend" />
+        <div id="containers">
+        <div class="container"><div class="text"><section class="cjseg" aria-label="Liquidity summary">
+          
+        <style>
+        .cjseg { --fg:#111; --bg:#fff; --muted:#666; --line:#e5e7eb; --accent:#111; font-family: ui-sans-serif, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; color:var(--fg);}
+        .cjseg .cjseg-header { margin-bottom: 12px; }
+        .cjseg h2 { margin: 0; font-size: 1.35rem; font-weight: 700; line-height: 1.3; }
+        .cjseg .sub { color: var(--muted); margin-top: 2px; font-size: 0.9rem; }
+        .cjseg .meta { margin-top: 6px; font-size: 0.95rem; }
+        .cjseg .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 10px; }
+
+        /* Cards */
+        .cjseg .card { border: 1px solid var(--line); border-radius: 8px; padding: 10px; background: var(--bg); }
+        .cjseg .card-title { font-weight: 600; margin-bottom: 6px; }
+        .cjseg .card-body { display: grid; gap: 4px; }
+        .cjseg .kv { display: flex; justify-content: space-between; gap: 10px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 0.92rem; }
+        .cjseg .kv .k { color: var(--muted); }
+        .cjseg .kv .v { font-weight: 600; }
+
+        /* Tabs (single) */
+        .cjseg .tabs { display: flex; gap: 6px; border-bottom: 1px solid var(--line); margin: 10px 0 8px; }
+        .cjseg .tab { background: transparent; border: none; padding: 6px 8px; font-weight: 600; cursor: default; color: var(--fg); border-bottom: 2px solid var(--fg); }
+        .cjseg .tab-panels { margin-top: 4px; }
+        .cjseg .tab-panel { display: none; }
+        .cjseg .tab-panel.show { display: block; }
+
+        /* IO panel */
+        .cjseg .io-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 10px; }
+        .cjseg .io-col { border: 1px solid var(--line); border-radius: 8px; padding: 10px; }
+        .cjseg .io-col .over { font-weight: 600; margin-bottom: 2px; }
+        .cjseg .io-col .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 0.98rem; }
+        .cjseg .io-col .under { color: var(--muted); font-size: 0.85rem; margin-top: 2px; }
+
+        .cjseg .foot { margin-top: 8px; color: var(--muted); font-size: 0.85rem; }
+        </style>
+        
+          
+        <div class="cjseg-header">
+          <div class="meta">Total coinjoins: <b>237</b></div>
+          <div class="meta">Period         : <b>2025-05-31 11:16:06.000 <a href="https://mempool.space/tx/737a867727db9a2c981ad622f2fa14b021ce8b1066a001e34fb793f8da833155">(tx)</a> — 2025-12-11 21:33:39.000 <a href="https://mempool.space/tx/8528ed5214bf0b876cb5a42963159517026707d23378de044ae94f6fa1ca7a65">(tx)</a></b></div>
+        </div>
+        
+
+          
+        <div class="tabs" role="tablist" aria-label="Stats tabs">
+          <button class="tab active" role="tab" aria-selected="true" tabindex="0">Inputs &amp; Outputs</button>
+        </div>
+        <div class="tab-panels">
+          <div class="tab-panel show" role="tabpanel">
+            
+          <div class="io-grid">
+            <div class="io-col">
+              <div class="over">Inputs per CJ</div>
+              <div class="mono">5 / 5.0 / 5.0 / 5</div>
+              <div class="under">min / avg / median / max</div>
+            </div>
+            <div class="io-col">
+              <div class="over">Outputs per CJ</div>
+              <div class="mono">5 / 5.0 / 5.0 / 5</div>
+              <div class="under">min / avg / median / max</div>
+            </div>
+          </div>
+        
+          </div>
+        </div>
+        
+
+          <div class="grid">
+            
+        <div class="card">
+          <div class="card-title">Key Ratios</div>
+          <div class="card-body">
+            <span class="kv"><span class="k">Fresh inputs / total inputs</span><span class="v">483/1185 (40.8%)</span></span><span class="kv"><span class="k">Friends inputs / total inputs</span><span class="v">0/1185 (0.0%)</span></span><span class="kv"><span class="k">Leaving outputs / total outputs</span><span class="v">149/1185 (12.6%)</span></span><span class="kv"><span class="k">Staying outputs / total outputs</span><span class="v">334/1185 (28.2%)</span></span><span class="kv"><span class="k">Staying / non-remix outputs</span><span class="v">334/483 (69.2%)</span></span><span class="kv"><span class="k">Remixed inputs / total (numbers)</span><span class="v">702/1185 (59.2%)</span></span><span class="kv"><span class="k">Remixed inputs / total (values, BTC)</span><span class="v">17.55/29.63 (59.2%)</span></span>
+          </div>
+        </div>
+        
+            
+        <div class="card">
+          <div class="card-title">Aggregate Values</div>
+          <div class="card-body">
+            <span class="kv"><span class="k">Fresh inflows (BTC)</span><span class="v">12.08</span></span><span class="kv"><span class="k">Fresh inflows without nonstandard (BTC)</span><span class="v">12.08</span></span><span class="kv"><span class="k">WW1/WW2 mix inflows (BTC)</span><span class="v">0</span></span><span class="kv"><span class="k">Unmoved outputs (BTC)</span><span class="v">8.35</span></span><span class="kv"><span class="k">Leaving outputs (BTC)</span><span class="v">3.73</span></span><span class="kv"><span class="k">Nonstandard outputs leaving (BTC)</span><span class="v">0</span></span>
+          </div>
+        </div>
+        
+          </div>
+
+        </section></div></div><div class='container'> <div class='large'> 
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly//whirlpool_ashigaru_2_5M/whirlpool_ashigaru_2_5M_cummul_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t//whirlpool_ashigaru_2_5M/whirlpool_ashigaru_2_5M_cummul_values_norm.png?v2025-12-12" 
+                alt="/whirlpool_ashigaru_2_5M/whirlpool_ashigaru_2_5M_cummul_values_norm.png" loading="lazy" />
+            </div> </div>
+    <div class="container">    </div>
+    <h2>Whirlpool - Ashigaru 2.5M sats - December 2025</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_ashigaru_2_5M/2025-12-01 00-00-00--2026-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_ashigaru_2_5M/2025-12-01 00-00-00--2026-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_ashigaru_2_5M/2025-12-01 00-00-00--2026-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_ashigaru_2_5M/2025-12-01 00-00-00--2026-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_ashigaru_2_5M/2025-12-01 00-00-00--2026-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_ashigaru_2_5M/2025-12-01 00-00-00--2026-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_ashigaru_2_5M/2025-12-01 00-00-00--2026-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_ashigaru_2_5M/2025-12-01 00-00-00--2026-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_ashigaru_2_5M/2025-12-01 00-00-00--2026-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_ashigaru_2_5M/2025-12-01 00-00-00--2026-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_ashigaru_2_5M/2025-12-01 00-00-00--2026-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_ashigaru_2_5M/2025-12-01 00-00-00--2026-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Ashigaru 2.5M sats - November 2025</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_ashigaru_2_5M/2025-11-01 00-00-00--2025-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_ashigaru_2_5M/2025-11-01 00-00-00--2025-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_ashigaru_2_5M/2025-11-01 00-00-00--2025-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_ashigaru_2_5M/2025-11-01 00-00-00--2025-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_ashigaru_2_5M/2025-11-01 00-00-00--2025-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_ashigaru_2_5M/2025-11-01 00-00-00--2025-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_ashigaru_2_5M/2025-11-01 00-00-00--2025-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_ashigaru_2_5M/2025-11-01 00-00-00--2025-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_ashigaru_2_5M/2025-11-01 00-00-00--2025-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_ashigaru_2_5M/2025-11-01 00-00-00--2025-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_ashigaru_2_5M/2025-11-01 00-00-00--2025-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_ashigaru_2_5M/2025-11-01 00-00-00--2025-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Ashigaru 2.5M sats - October 2025</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_ashigaru_2_5M/2025-10-01 00-00-00--2025-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_ashigaru_2_5M/2025-10-01 00-00-00--2025-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_ashigaru_2_5M/2025-10-01 00-00-00--2025-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_ashigaru_2_5M/2025-10-01 00-00-00--2025-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_ashigaru_2_5M/2025-10-01 00-00-00--2025-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_ashigaru_2_5M/2025-10-01 00-00-00--2025-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_ashigaru_2_5M/2025-10-01 00-00-00--2025-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_ashigaru_2_5M/2025-10-01 00-00-00--2025-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_ashigaru_2_5M/2025-10-01 00-00-00--2025-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_ashigaru_2_5M/2025-10-01 00-00-00--2025-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_ashigaru_2_5M/2025-10-01 00-00-00--2025-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_ashigaru_2_5M/2025-10-01 00-00-00--2025-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Ashigaru 2.5M sats - September 2025</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_ashigaru_2_5M/2025-09-01 00-00-00--2025-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_ashigaru_2_5M/2025-09-01 00-00-00--2025-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_ashigaru_2_5M/2025-09-01 00-00-00--2025-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_ashigaru_2_5M/2025-09-01 00-00-00--2025-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_ashigaru_2_5M/2025-09-01 00-00-00--2025-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_ashigaru_2_5M/2025-09-01 00-00-00--2025-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_ashigaru_2_5M/2025-09-01 00-00-00--2025-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_ashigaru_2_5M/2025-09-01 00-00-00--2025-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_ashigaru_2_5M/2025-09-01 00-00-00--2025-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_ashigaru_2_5M/2025-09-01 00-00-00--2025-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_ashigaru_2_5M/2025-09-01 00-00-00--2025-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_ashigaru_2_5M/2025-09-01 00-00-00--2025-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Ashigaru 2.5M sats - August 2025</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_ashigaru_2_5M/2025-08-01 00-00-00--2025-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_ashigaru_2_5M/2025-08-01 00-00-00--2025-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_ashigaru_2_5M/2025-08-01 00-00-00--2025-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_ashigaru_2_5M/2025-08-01 00-00-00--2025-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_ashigaru_2_5M/2025-08-01 00-00-00--2025-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_ashigaru_2_5M/2025-08-01 00-00-00--2025-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_ashigaru_2_5M/2025-08-01 00-00-00--2025-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_ashigaru_2_5M/2025-08-01 00-00-00--2025-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_ashigaru_2_5M/2025-08-01 00-00-00--2025-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_ashigaru_2_5M/2025-08-01 00-00-00--2025-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_ashigaru_2_5M/2025-08-01 00-00-00--2025-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_ashigaru_2_5M/2025-08-01 00-00-00--2025-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Ashigaru 2.5M sats - July 2025</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_ashigaru_2_5M/2025-07-01 00-00-00--2025-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_ashigaru_2_5M/2025-07-01 00-00-00--2025-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_ashigaru_2_5M/2025-07-01 00-00-00--2025-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_ashigaru_2_5M/2025-07-01 00-00-00--2025-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_ashigaru_2_5M/2025-07-01 00-00-00--2025-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_ashigaru_2_5M/2025-07-01 00-00-00--2025-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_ashigaru_2_5M/2025-07-01 00-00-00--2025-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_ashigaru_2_5M/2025-07-01 00-00-00--2025-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_ashigaru_2_5M/2025-07-01 00-00-00--2025-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_ashigaru_2_5M/2025-07-01 00-00-00--2025-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_ashigaru_2_5M/2025-07-01 00-00-00--2025-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_ashigaru_2_5M/2025-07-01 00-00-00--2025-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Ashigaru 2.5M sats - June 2025</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_ashigaru_2_5M/2025-06-01 00-00-00--2025-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_ashigaru_2_5M/2025-06-01 00-00-00--2025-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_ashigaru_2_5M/2025-06-01 00-00-00--2025-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_ashigaru_2_5M/2025-06-01 00-00-00--2025-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_ashigaru_2_5M/2025-06-01 00-00-00--2025-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_ashigaru_2_5M/2025-06-01 00-00-00--2025-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_ashigaru_2_5M/2025-06-01 00-00-00--2025-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_ashigaru_2_5M/2025-06-01 00-00-00--2025-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_ashigaru_2_5M/2025-06-01 00-00-00--2025-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_ashigaru_2_5M/2025-06-01 00-00-00--2025-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_ashigaru_2_5M/2025-06-01 00-00-00--2025-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_ashigaru_2_5M/2025-06-01 00-00-00--2025-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Ashigaru 2.5M sats - May 2025</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_ashigaru_2_5M/2025-05-01 00-00-00--2025-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_ashigaru_2_5M/2025-05-01 00-00-00--2025-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_ashigaru_2_5M/2025-05-01 00-00-00--2025-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_ashigaru_2_5M/2025-05-01 00-00-00--2025-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_ashigaru_2_5M/2025-05-01 00-00-00--2025-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_ashigaru_2_5M/2025-05-01 00-00-00--2025-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_ashigaru_2_5M/2025-05-01 00-00-00--2025-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_ashigaru_2_5M/2025-05-01 00-00-00--2025-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_ashigaru_2_5M/2025-05-01 00-00-00--2025-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_ashigaru_2_5M/2025-05-01 00-00-00--2025-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_ashigaru_2_5M/2025-05-01 00-00-00--2025-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_ashigaru_2_5M/2025-05-01 00-00-00--2025-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_ashigaru_2_5M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+        </div>
+
+            </div>
+            <div id="lightbox">
+            <span class="close">&times;</span>
+            <span class="arrow left">&#10094;</span>
+            <img id="lightbox-img" src="" alt="">
+            <span class="arrow right">&#10095;</span>
+            </div>
+            
+            <script src="./js/lightbox.js?v1"></script>
+        </body>
+        </html>
+        

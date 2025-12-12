@@ -1,0 +1,1750 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>CoinJoin Statistics</title>
+        <base href="https://crocs-muni.github.io/coinjoin"/>
+        <link rel="stylesheet" href="style.css?v2" />
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+        </head>
+        <body>
+            <p class=banner>This is a nightly build. If nightly is broken, visit a stable version: <a href=https://crocs-muni.github.io/coinjoin/stable/index.html>https://crocs-muni.github.io/coinjoin/stable/index.html</a></p>
+            <header>
+            <h1>CoinJoin Statistics</h1>
+            <p class="update">Last updated: 12-12-2025</p>
+
+            <nav class="menu">
+            <ul>
+        <li><a href="index.html" class="  " >Overview</a></li><li><a href="wasabi2/wasabi2.html" class="  active" >Wasabi 2</a></li><li><a href="wasabi1/wasabi1.html" class="  " >Wasabi 1</a></li><li><a href="whirlpool/whirlpool.html" class="current  active" >Whirlpool</a></li>
+            </ul>
+            </nav>
+        <div id='subnav'> <ul><li><a href="whirlpool/whirlpool.html" class=" " >All pools</a></li><li><a href="whirlpool/whirlpool_ashigaru_2_5M.html" class=" active" >Ashigaru 2.5M sats</a></li><li><a href="whirlpool/whirlpool_ashigaru_25M.html" class=" active" >Ashigaru 25M sats</a></li><li><a href="whirlpool/whirlpool_100k.html" class=" " >Samourai 100k sats</a></li><li><a href="whirlpool/whirlpool_1M.html" class="current " >Samourai 1M sats</a></li><li><a href="whirlpool/whirlpool_5M.html" class=" " >Samourai 5M sats</a></li><li><a href="whirlpool/whirlpool_50M.html" class=" " >Samourai 50M sats</a></li></div> </ul>
+            </header>
+        <img src="legend.png" alt="legend" id="legend" />
+        <div id="containers">
+        <div class="container"><div class="text"><section class="cjseg" aria-label="Liquidity summary">
+          
+        <style>
+        .cjseg { --fg:#111; --bg:#fff; --muted:#666; --line:#e5e7eb; --accent:#111; font-family: ui-sans-serif, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; color:var(--fg);}
+        .cjseg .cjseg-header { margin-bottom: 12px; }
+        .cjseg h2 { margin: 0; font-size: 1.35rem; font-weight: 700; line-height: 1.3; }
+        .cjseg .sub { color: var(--muted); margin-top: 2px; font-size: 0.9rem; }
+        .cjseg .meta { margin-top: 6px; font-size: 0.95rem; }
+        .cjseg .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 10px; }
+
+        /* Cards */
+        .cjseg .card { border: 1px solid var(--line); border-radius: 8px; padding: 10px; background: var(--bg); }
+        .cjseg .card-title { font-weight: 600; margin-bottom: 6px; }
+        .cjseg .card-body { display: grid; gap: 4px; }
+        .cjseg .kv { display: flex; justify-content: space-between; gap: 10px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 0.92rem; }
+        .cjseg .kv .k { color: var(--muted); }
+        .cjseg .kv .v { font-weight: 600; }
+
+        /* Tabs (single) */
+        .cjseg .tabs { display: flex; gap: 6px; border-bottom: 1px solid var(--line); margin: 10px 0 8px; }
+        .cjseg .tab { background: transparent; border: none; padding: 6px 8px; font-weight: 600; cursor: default; color: var(--fg); border-bottom: 2px solid var(--fg); }
+        .cjseg .tab-panels { margin-top: 4px; }
+        .cjseg .tab-panel { display: none; }
+        .cjseg .tab-panel.show { display: block; }
+
+        /* IO panel */
+        .cjseg .io-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 10px; }
+        .cjseg .io-col { border: 1px solid var(--line); border-radius: 8px; padding: 10px; }
+        .cjseg .io-col .over { font-weight: 600; margin-bottom: 2px; }
+        .cjseg .io-col .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 0.98rem; }
+        .cjseg .io-col .under { color: var(--muted); font-size: 0.85rem; margin-top: 2px; }
+
+        .cjseg .foot { margin-top: 8px; color: var(--muted); font-size: 0.85rem; }
+        </style>
+        
+          
+        <div class="cjseg-header">
+          <div class="meta">Total coinjoins: <b>205648</b></div>
+          <div class="meta">Period         : <b>2019-05-23 18:54:27.000 <a href="https://mempool.space/tx/c6c27bef217583cca5f89de86e0cd7d8b546844f800da91d91a74039c3b40fba">(tx)</a> — 2024-04-24 16:01:18.000 <a href="https://mempool.space/tx/8bc4ba7b1805c8a4b2f35e2f66b430192e6760cdc23dfef3403fcd9a1b7723c8">(tx)</a></b></div>
+        </div>
+        
+
+          
+        <div class="tabs" role="tablist" aria-label="Stats tabs">
+          <button class="tab active" role="tab" aria-selected="true" tabindex="0">Inputs &amp; Outputs</button>
+        </div>
+        <div class="tab-panels">
+          <div class="tab-panel show" role="tabpanel">
+            
+          <div class="io-grid">
+            <div class="io-col">
+              <div class="over">Inputs per CJ</div>
+              <div class="mono">5 / 5.3 / 5.0 / 10</div>
+              <div class="under">min / avg / median / max</div>
+            </div>
+            <div class="io-col">
+              <div class="over">Outputs per CJ</div>
+              <div class="mono">5 / 5.3 / 5.0 / 10</div>
+              <div class="under">min / avg / median / max</div>
+            </div>
+          </div>
+        
+          </div>
+        </div>
+        
+
+          <div class="grid">
+            
+        <div class="card">
+          <div class="card-title">Key Ratios</div>
+          <div class="card-body">
+            <span class="kv"><span class="k">Fresh inputs / total inputs</span><span class="v">434225/1089195 (39.9%)</span></span><span class="kv"><span class="k">Friends inputs / total inputs</span><span class="v">0/1089195 (0.0%)</span></span><span class="kv"><span class="k">Leaving outputs / total outputs</span><span class="v">400368/1089195 (36.8%)</span></span><span class="kv"><span class="k">Staying outputs / total outputs</span><span class="v">33857/1089195 (3.1%)</span></span><span class="kv"><span class="k">Staying / non-remix outputs</span><span class="v">33857/434225 (7.8%)</span></span><span class="kv"><span class="k">Remixed inputs / total (numbers)</span><span class="v">654970/1089195 (60.1%)</span></span><span class="kv"><span class="k">Remixed inputs / total (values, BTC)</span><span class="v">6549.70/10909.55 (60.0%)</span></span>
+          </div>
+        </div>
+        
+            
+        <div class="card">
+          <div class="card-title">Aggregate Values</div>
+          <div class="card-body">
+            <span class="kv"><span class="k">Fresh inflows (BTC)</span><span class="v">4359.85</span></span><span class="kv"><span class="k">Fresh inflows without nonstandard (BTC)</span><span class="v">4359.85</span></span><span class="kv"><span class="k">WW1/WW2 mix inflows (BTC)</span><span class="v">0</span></span><span class="kv"><span class="k">Unmoved outputs (BTC)</span><span class="v">338.57</span></span><span class="kv"><span class="k">Leaving outputs (BTC)</span><span class="v">4003.68</span></span><span class="kv"><span class="k">Nonstandard outputs leaving (BTC)</span><span class="v">0</span></span>
+          </div>
+        </div>
+        
+          </div>
+
+        </section></div></div><div class='container'> <div class='large'> 
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly//whirlpool_1M/whirlpool_1M_cummul_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t//whirlpool_1M/whirlpool_1M_cummul_values_norm.png?v2025-12-12" 
+                alt="/whirlpool_1M/whirlpool_1M_cummul_values_norm.png" loading="lazy" />
+            </div> </div>
+    <div class="container">    </div>
+    <h2>Whirlpool - Samourai 1M sats - April 2024</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2024-04-01 00-00-00--2024-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2024-04-01 00-00-00--2024-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2024-04-01 00-00-00--2024-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2024-04-01 00-00-00--2024-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2024-04-01 00-00-00--2024-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2024-04-01 00-00-00--2024-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2024-04-01 00-00-00--2024-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2024-04-01 00-00-00--2024-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2024-04-01 00-00-00--2024-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2024-04-01 00-00-00--2024-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2024-04-01 00-00-00--2024-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2024-04-01 00-00-00--2024-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - March 2024</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2024-03-01 00-00-00--2024-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2024-03-01 00-00-00--2024-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2024-03-01 00-00-00--2024-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2024-03-01 00-00-00--2024-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2024-03-01 00-00-00--2024-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2024-03-01 00-00-00--2024-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2024-03-01 00-00-00--2024-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2024-03-01 00-00-00--2024-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2024-03-01 00-00-00--2024-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2024-03-01 00-00-00--2024-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2024-03-01 00-00-00--2024-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2024-03-01 00-00-00--2024-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - February 2024</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2024-02-01 00-00-00--2024-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2024-02-01 00-00-00--2024-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2024-02-01 00-00-00--2024-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2024-02-01 00-00-00--2024-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2024-02-01 00-00-00--2024-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2024-02-01 00-00-00--2024-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2024-02-01 00-00-00--2024-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2024-02-01 00-00-00--2024-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2024-02-01 00-00-00--2024-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2024-02-01 00-00-00--2024-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2024-02-01 00-00-00--2024-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2024-02-01 00-00-00--2024-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - January 2024</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2024-01-01 00-00-00--2024-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2024-01-01 00-00-00--2024-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2024-01-01 00-00-00--2024-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2024-01-01 00-00-00--2024-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2024-01-01 00-00-00--2024-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2024-01-01 00-00-00--2024-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2024-01-01 00-00-00--2024-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2024-01-01 00-00-00--2024-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2024-01-01 00-00-00--2024-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2024-01-01 00-00-00--2024-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2024-01-01 00-00-00--2024-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2024-01-01 00-00-00--2024-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - December 2023</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-12-01 00-00-00--2024-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-12-01 00-00-00--2024-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-12-01 00-00-00--2024-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-12-01 00-00-00--2024-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-12-01 00-00-00--2024-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-12-01 00-00-00--2024-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-12-01 00-00-00--2024-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-12-01 00-00-00--2024-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-12-01 00-00-00--2024-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-12-01 00-00-00--2024-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-12-01 00-00-00--2024-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-12-01 00-00-00--2024-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - November 2023</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-11-01 00-00-00--2023-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-11-01 00-00-00--2023-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-11-01 00-00-00--2023-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-11-01 00-00-00--2023-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-11-01 00-00-00--2023-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-11-01 00-00-00--2023-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-11-01 00-00-00--2023-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-11-01 00-00-00--2023-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-11-01 00-00-00--2023-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-11-01 00-00-00--2023-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-11-01 00-00-00--2023-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-11-01 00-00-00--2023-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - October 2023</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-10-01 00-00-00--2023-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-10-01 00-00-00--2023-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-10-01 00-00-00--2023-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-10-01 00-00-00--2023-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-10-01 00-00-00--2023-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-10-01 00-00-00--2023-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-10-01 00-00-00--2023-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-10-01 00-00-00--2023-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-10-01 00-00-00--2023-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-10-01 00-00-00--2023-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-10-01 00-00-00--2023-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-10-01 00-00-00--2023-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - September 2023</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-09-01 00-00-00--2023-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-09-01 00-00-00--2023-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-09-01 00-00-00--2023-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-09-01 00-00-00--2023-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-09-01 00-00-00--2023-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-09-01 00-00-00--2023-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-09-01 00-00-00--2023-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-09-01 00-00-00--2023-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-09-01 00-00-00--2023-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-09-01 00-00-00--2023-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-09-01 00-00-00--2023-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-09-01 00-00-00--2023-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - August 2023</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-08-01 00-00-00--2023-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-08-01 00-00-00--2023-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-08-01 00-00-00--2023-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-08-01 00-00-00--2023-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-08-01 00-00-00--2023-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-08-01 00-00-00--2023-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-08-01 00-00-00--2023-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-08-01 00-00-00--2023-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-08-01 00-00-00--2023-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-08-01 00-00-00--2023-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-08-01 00-00-00--2023-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-08-01 00-00-00--2023-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - July 2023</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-07-01 00-00-00--2023-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-07-01 00-00-00--2023-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-07-01 00-00-00--2023-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-07-01 00-00-00--2023-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-07-01 00-00-00--2023-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-07-01 00-00-00--2023-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-07-01 00-00-00--2023-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-07-01 00-00-00--2023-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-07-01 00-00-00--2023-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-07-01 00-00-00--2023-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-07-01 00-00-00--2023-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-07-01 00-00-00--2023-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - June 2023</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-06-01 00-00-00--2023-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-06-01 00-00-00--2023-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-06-01 00-00-00--2023-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-06-01 00-00-00--2023-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-06-01 00-00-00--2023-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-06-01 00-00-00--2023-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-06-01 00-00-00--2023-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-06-01 00-00-00--2023-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-06-01 00-00-00--2023-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-06-01 00-00-00--2023-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-06-01 00-00-00--2023-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-06-01 00-00-00--2023-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - May 2023</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-05-01 00-00-00--2023-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-05-01 00-00-00--2023-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-05-01 00-00-00--2023-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-05-01 00-00-00--2023-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-05-01 00-00-00--2023-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-05-01 00-00-00--2023-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-05-01 00-00-00--2023-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-05-01 00-00-00--2023-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-05-01 00-00-00--2023-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-05-01 00-00-00--2023-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-05-01 00-00-00--2023-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-05-01 00-00-00--2023-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - April 2023</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-04-01 00-00-00--2023-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-04-01 00-00-00--2023-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-04-01 00-00-00--2023-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-04-01 00-00-00--2023-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-04-01 00-00-00--2023-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-04-01 00-00-00--2023-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-04-01 00-00-00--2023-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-04-01 00-00-00--2023-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-04-01 00-00-00--2023-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-04-01 00-00-00--2023-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-04-01 00-00-00--2023-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-04-01 00-00-00--2023-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - March 2023</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-03-01 00-00-00--2023-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-03-01 00-00-00--2023-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-03-01 00-00-00--2023-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-03-01 00-00-00--2023-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-03-01 00-00-00--2023-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-03-01 00-00-00--2023-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-03-01 00-00-00--2023-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-03-01 00-00-00--2023-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-03-01 00-00-00--2023-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-03-01 00-00-00--2023-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-03-01 00-00-00--2023-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-03-01 00-00-00--2023-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - February 2023</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-02-01 00-00-00--2023-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-02-01 00-00-00--2023-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-02-01 00-00-00--2023-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-02-01 00-00-00--2023-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-02-01 00-00-00--2023-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-02-01 00-00-00--2023-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-02-01 00-00-00--2023-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-02-01 00-00-00--2023-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-02-01 00-00-00--2023-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-02-01 00-00-00--2023-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-02-01 00-00-00--2023-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-02-01 00-00-00--2023-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - January 2023</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-01-01 00-00-00--2023-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-01-01 00-00-00--2023-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-01-01 00-00-00--2023-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-01-01 00-00-00--2023-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-01-01 00-00-00--2023-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-01-01 00-00-00--2023-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-01-01 00-00-00--2023-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-01-01 00-00-00--2023-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-01-01 00-00-00--2023-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2023-01-01 00-00-00--2023-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2023-01-01 00-00-00--2023-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2023-01-01 00-00-00--2023-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - December 2022</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-12-01 00-00-00--2023-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-12-01 00-00-00--2023-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-12-01 00-00-00--2023-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-12-01 00-00-00--2023-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-12-01 00-00-00--2023-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-12-01 00-00-00--2023-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-12-01 00-00-00--2023-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-12-01 00-00-00--2023-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-12-01 00-00-00--2023-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-12-01 00-00-00--2023-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-12-01 00-00-00--2023-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-12-01 00-00-00--2023-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - November 2022</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-11-01 00-00-00--2022-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-11-01 00-00-00--2022-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-11-01 00-00-00--2022-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-11-01 00-00-00--2022-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-11-01 00-00-00--2022-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-11-01 00-00-00--2022-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-11-01 00-00-00--2022-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-11-01 00-00-00--2022-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-11-01 00-00-00--2022-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-11-01 00-00-00--2022-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-11-01 00-00-00--2022-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-11-01 00-00-00--2022-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - October 2022</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-10-01 00-00-00--2022-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-10-01 00-00-00--2022-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-10-01 00-00-00--2022-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-10-01 00-00-00--2022-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-10-01 00-00-00--2022-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-10-01 00-00-00--2022-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-10-01 00-00-00--2022-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-10-01 00-00-00--2022-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-10-01 00-00-00--2022-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-10-01 00-00-00--2022-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-10-01 00-00-00--2022-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-10-01 00-00-00--2022-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - September 2022</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-09-01 00-00-00--2022-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-09-01 00-00-00--2022-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-09-01 00-00-00--2022-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-09-01 00-00-00--2022-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-09-01 00-00-00--2022-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-09-01 00-00-00--2022-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-09-01 00-00-00--2022-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-09-01 00-00-00--2022-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-09-01 00-00-00--2022-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-09-01 00-00-00--2022-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-09-01 00-00-00--2022-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-09-01 00-00-00--2022-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - August 2022</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-08-01 00-00-00--2022-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-08-01 00-00-00--2022-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-08-01 00-00-00--2022-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-08-01 00-00-00--2022-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-08-01 00-00-00--2022-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-08-01 00-00-00--2022-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-08-01 00-00-00--2022-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-08-01 00-00-00--2022-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-08-01 00-00-00--2022-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-08-01 00-00-00--2022-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-08-01 00-00-00--2022-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-08-01 00-00-00--2022-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - July 2022</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-07-01 00-00-00--2022-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-07-01 00-00-00--2022-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-07-01 00-00-00--2022-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-07-01 00-00-00--2022-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-07-01 00-00-00--2022-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-07-01 00-00-00--2022-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-07-01 00-00-00--2022-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-07-01 00-00-00--2022-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-07-01 00-00-00--2022-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-07-01 00-00-00--2022-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-07-01 00-00-00--2022-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-07-01 00-00-00--2022-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - June 2022</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-06-01 00-00-00--2022-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-06-01 00-00-00--2022-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-06-01 00-00-00--2022-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-06-01 00-00-00--2022-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-06-01 00-00-00--2022-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-06-01 00-00-00--2022-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-06-01 00-00-00--2022-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-06-01 00-00-00--2022-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-06-01 00-00-00--2022-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-06-01 00-00-00--2022-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-06-01 00-00-00--2022-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-06-01 00-00-00--2022-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - May 2022</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-05-01 00-00-00--2022-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-05-01 00-00-00--2022-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-05-01 00-00-00--2022-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-05-01 00-00-00--2022-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-05-01 00-00-00--2022-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-05-01 00-00-00--2022-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-05-01 00-00-00--2022-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-05-01 00-00-00--2022-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-05-01 00-00-00--2022-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-05-01 00-00-00--2022-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-05-01 00-00-00--2022-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-05-01 00-00-00--2022-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - April 2022</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-04-01 00-00-00--2022-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-04-01 00-00-00--2022-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-04-01 00-00-00--2022-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-04-01 00-00-00--2022-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-04-01 00-00-00--2022-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-04-01 00-00-00--2022-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-04-01 00-00-00--2022-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-04-01 00-00-00--2022-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-04-01 00-00-00--2022-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-04-01 00-00-00--2022-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-04-01 00-00-00--2022-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-04-01 00-00-00--2022-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - March 2022</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-03-01 00-00-00--2022-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-03-01 00-00-00--2022-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-03-01 00-00-00--2022-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-03-01 00-00-00--2022-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-03-01 00-00-00--2022-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-03-01 00-00-00--2022-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-03-01 00-00-00--2022-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-03-01 00-00-00--2022-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-03-01 00-00-00--2022-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-03-01 00-00-00--2022-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-03-01 00-00-00--2022-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-03-01 00-00-00--2022-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - February 2022</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-02-01 00-00-00--2022-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-02-01 00-00-00--2022-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-02-01 00-00-00--2022-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-02-01 00-00-00--2022-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-02-01 00-00-00--2022-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-02-01 00-00-00--2022-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-02-01 00-00-00--2022-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-02-01 00-00-00--2022-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-02-01 00-00-00--2022-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-02-01 00-00-00--2022-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-02-01 00-00-00--2022-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-02-01 00-00-00--2022-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - January 2022</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-01-01 00-00-00--2022-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-01-01 00-00-00--2022-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-01-01 00-00-00--2022-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-01-01 00-00-00--2022-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-01-01 00-00-00--2022-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-01-01 00-00-00--2022-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-01-01 00-00-00--2022-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-01-01 00-00-00--2022-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-01-01 00-00-00--2022-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2022-01-01 00-00-00--2022-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2022-01-01 00-00-00--2022-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2022-01-01 00-00-00--2022-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - December 2021</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-12-01 00-00-00--2022-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-12-01 00-00-00--2022-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-12-01 00-00-00--2022-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-12-01 00-00-00--2022-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-12-01 00-00-00--2022-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-12-01 00-00-00--2022-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-12-01 00-00-00--2022-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-12-01 00-00-00--2022-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-12-01 00-00-00--2022-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-12-01 00-00-00--2022-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-12-01 00-00-00--2022-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-12-01 00-00-00--2022-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - November 2021</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-11-01 00-00-00--2021-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-11-01 00-00-00--2021-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-11-01 00-00-00--2021-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-11-01 00-00-00--2021-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-11-01 00-00-00--2021-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-11-01 00-00-00--2021-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-11-01 00-00-00--2021-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-11-01 00-00-00--2021-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-11-01 00-00-00--2021-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-11-01 00-00-00--2021-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-11-01 00-00-00--2021-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-11-01 00-00-00--2021-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - October 2021</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-10-01 00-00-00--2021-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-10-01 00-00-00--2021-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-10-01 00-00-00--2021-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-10-01 00-00-00--2021-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-10-01 00-00-00--2021-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-10-01 00-00-00--2021-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-10-01 00-00-00--2021-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-10-01 00-00-00--2021-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-10-01 00-00-00--2021-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-10-01 00-00-00--2021-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-10-01 00-00-00--2021-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-10-01 00-00-00--2021-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - September 2021</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-09-01 00-00-00--2021-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-09-01 00-00-00--2021-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-09-01 00-00-00--2021-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-09-01 00-00-00--2021-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-09-01 00-00-00--2021-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-09-01 00-00-00--2021-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-09-01 00-00-00--2021-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-09-01 00-00-00--2021-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-09-01 00-00-00--2021-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-09-01 00-00-00--2021-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-09-01 00-00-00--2021-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-09-01 00-00-00--2021-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - August 2021</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-08-01 00-00-00--2021-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-08-01 00-00-00--2021-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-08-01 00-00-00--2021-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-08-01 00-00-00--2021-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-08-01 00-00-00--2021-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-08-01 00-00-00--2021-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-08-01 00-00-00--2021-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-08-01 00-00-00--2021-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-08-01 00-00-00--2021-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-08-01 00-00-00--2021-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-08-01 00-00-00--2021-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-08-01 00-00-00--2021-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - July 2021</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-07-01 00-00-00--2021-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-07-01 00-00-00--2021-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-07-01 00-00-00--2021-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-07-01 00-00-00--2021-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-07-01 00-00-00--2021-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-07-01 00-00-00--2021-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-07-01 00-00-00--2021-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-07-01 00-00-00--2021-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-07-01 00-00-00--2021-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-07-01 00-00-00--2021-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-07-01 00-00-00--2021-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-07-01 00-00-00--2021-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - June 2021</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-06-01 00-00-00--2021-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-06-01 00-00-00--2021-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-06-01 00-00-00--2021-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-06-01 00-00-00--2021-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-06-01 00-00-00--2021-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-06-01 00-00-00--2021-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-06-01 00-00-00--2021-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-06-01 00-00-00--2021-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-06-01 00-00-00--2021-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-06-01 00-00-00--2021-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-06-01 00-00-00--2021-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-06-01 00-00-00--2021-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - May 2021</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-05-01 00-00-00--2021-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-05-01 00-00-00--2021-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-05-01 00-00-00--2021-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-05-01 00-00-00--2021-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-05-01 00-00-00--2021-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-05-01 00-00-00--2021-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-05-01 00-00-00--2021-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-05-01 00-00-00--2021-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-05-01 00-00-00--2021-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-05-01 00-00-00--2021-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-05-01 00-00-00--2021-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-05-01 00-00-00--2021-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - April 2021</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-04-01 00-00-00--2021-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-04-01 00-00-00--2021-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-04-01 00-00-00--2021-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-04-01 00-00-00--2021-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-04-01 00-00-00--2021-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-04-01 00-00-00--2021-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-04-01 00-00-00--2021-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-04-01 00-00-00--2021-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-04-01 00-00-00--2021-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-04-01 00-00-00--2021-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-04-01 00-00-00--2021-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-04-01 00-00-00--2021-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - March 2021</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-03-01 00-00-00--2021-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-03-01 00-00-00--2021-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-03-01 00-00-00--2021-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-03-01 00-00-00--2021-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-03-01 00-00-00--2021-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-03-01 00-00-00--2021-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-03-01 00-00-00--2021-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-03-01 00-00-00--2021-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-03-01 00-00-00--2021-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-03-01 00-00-00--2021-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-03-01 00-00-00--2021-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-03-01 00-00-00--2021-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - February 2021</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-02-01 00-00-00--2021-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-02-01 00-00-00--2021-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-02-01 00-00-00--2021-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-02-01 00-00-00--2021-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-02-01 00-00-00--2021-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-02-01 00-00-00--2021-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-02-01 00-00-00--2021-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-02-01 00-00-00--2021-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-02-01 00-00-00--2021-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-02-01 00-00-00--2021-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-02-01 00-00-00--2021-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-02-01 00-00-00--2021-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - January 2021</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-01-01 00-00-00--2021-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-01-01 00-00-00--2021-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-01-01 00-00-00--2021-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-01-01 00-00-00--2021-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-01-01 00-00-00--2021-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-01-01 00-00-00--2021-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-01-01 00-00-00--2021-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-01-01 00-00-00--2021-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-01-01 00-00-00--2021-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2021-01-01 00-00-00--2021-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2021-01-01 00-00-00--2021-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2021-01-01 00-00-00--2021-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - December 2020</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-12-01 00-00-00--2021-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-12-01 00-00-00--2021-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-12-01 00-00-00--2021-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-12-01 00-00-00--2021-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-12-01 00-00-00--2021-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-12-01 00-00-00--2021-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-12-01 00-00-00--2021-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-12-01 00-00-00--2021-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-12-01 00-00-00--2021-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-12-01 00-00-00--2021-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-12-01 00-00-00--2021-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-12-01 00-00-00--2021-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - November 2020</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-11-01 00-00-00--2020-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-11-01 00-00-00--2020-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-11-01 00-00-00--2020-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-11-01 00-00-00--2020-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-11-01 00-00-00--2020-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-11-01 00-00-00--2020-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-11-01 00-00-00--2020-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-11-01 00-00-00--2020-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-11-01 00-00-00--2020-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-11-01 00-00-00--2020-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-11-01 00-00-00--2020-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-11-01 00-00-00--2020-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - October 2020</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-10-01 00-00-00--2020-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-10-01 00-00-00--2020-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-10-01 00-00-00--2020-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-10-01 00-00-00--2020-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-10-01 00-00-00--2020-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-10-01 00-00-00--2020-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-10-01 00-00-00--2020-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-10-01 00-00-00--2020-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-10-01 00-00-00--2020-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-10-01 00-00-00--2020-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-10-01 00-00-00--2020-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-10-01 00-00-00--2020-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - September 2020</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-09-01 00-00-00--2020-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-09-01 00-00-00--2020-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-09-01 00-00-00--2020-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-09-01 00-00-00--2020-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-09-01 00-00-00--2020-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-09-01 00-00-00--2020-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-09-01 00-00-00--2020-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-09-01 00-00-00--2020-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-09-01 00-00-00--2020-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-09-01 00-00-00--2020-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-09-01 00-00-00--2020-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-09-01 00-00-00--2020-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - August 2020</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-08-01 00-00-00--2020-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-08-01 00-00-00--2020-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-08-01 00-00-00--2020-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-08-01 00-00-00--2020-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-08-01 00-00-00--2020-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-08-01 00-00-00--2020-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-08-01 00-00-00--2020-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-08-01 00-00-00--2020-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-08-01 00-00-00--2020-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-08-01 00-00-00--2020-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-08-01 00-00-00--2020-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-08-01 00-00-00--2020-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - July 2020</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-07-01 00-00-00--2020-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-07-01 00-00-00--2020-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-07-01 00-00-00--2020-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-07-01 00-00-00--2020-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-07-01 00-00-00--2020-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-07-01 00-00-00--2020-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-07-01 00-00-00--2020-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-07-01 00-00-00--2020-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-07-01 00-00-00--2020-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-07-01 00-00-00--2020-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-07-01 00-00-00--2020-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-07-01 00-00-00--2020-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - June 2020</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-06-01 00-00-00--2020-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-06-01 00-00-00--2020-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-06-01 00-00-00--2020-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-06-01 00-00-00--2020-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-06-01 00-00-00--2020-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-06-01 00-00-00--2020-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-06-01 00-00-00--2020-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-06-01 00-00-00--2020-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-06-01 00-00-00--2020-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-06-01 00-00-00--2020-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-06-01 00-00-00--2020-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-06-01 00-00-00--2020-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - May 2020</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-05-01 00-00-00--2020-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-05-01 00-00-00--2020-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-05-01 00-00-00--2020-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-05-01 00-00-00--2020-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-05-01 00-00-00--2020-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-05-01 00-00-00--2020-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-05-01 00-00-00--2020-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-05-01 00-00-00--2020-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-05-01 00-00-00--2020-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-05-01 00-00-00--2020-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-05-01 00-00-00--2020-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-05-01 00-00-00--2020-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - April 2020</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-04-01 00-00-00--2020-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-04-01 00-00-00--2020-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-04-01 00-00-00--2020-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-04-01 00-00-00--2020-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-04-01 00-00-00--2020-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-04-01 00-00-00--2020-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-04-01 00-00-00--2020-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-04-01 00-00-00--2020-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-04-01 00-00-00--2020-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-04-01 00-00-00--2020-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-04-01 00-00-00--2020-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-04-01 00-00-00--2020-05-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - March 2020</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-03-01 00-00-00--2020-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-03-01 00-00-00--2020-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-03-01 00-00-00--2020-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-03-01 00-00-00--2020-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-03-01 00-00-00--2020-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-03-01 00-00-00--2020-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-03-01 00-00-00--2020-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-03-01 00-00-00--2020-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-03-01 00-00-00--2020-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-03-01 00-00-00--2020-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-03-01 00-00-00--2020-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-03-01 00-00-00--2020-04-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - February 2020</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-02-01 00-00-00--2020-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-02-01 00-00-00--2020-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-02-01 00-00-00--2020-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-02-01 00-00-00--2020-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-02-01 00-00-00--2020-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-02-01 00-00-00--2020-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-02-01 00-00-00--2020-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-02-01 00-00-00--2020-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-02-01 00-00-00--2020-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-02-01 00-00-00--2020-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-02-01 00-00-00--2020-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-02-01 00-00-00--2020-03-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - January 2020</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-01-01 00-00-00--2020-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-01-01 00-00-00--2020-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-01-01 00-00-00--2020-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-01-01 00-00-00--2020-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-01-01 00-00-00--2020-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-01-01 00-00-00--2020-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-01-01 00-00-00--2020-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-01-01 00-00-00--2020-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-01-01 00-00-00--2020-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2020-01-01 00-00-00--2020-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2020-01-01 00-00-00--2020-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2020-01-01 00-00-00--2020-02-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - December 2019</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2019-12-01 00-00-00--2020-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2019-12-01 00-00-00--2020-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2019-12-01 00-00-00--2020-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2019-12-01 00-00-00--2020-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2019-12-01 00-00-00--2020-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2019-12-01 00-00-00--2020-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2019-12-01 00-00-00--2020-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2019-12-01 00-00-00--2020-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2019-12-01 00-00-00--2020-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2019-12-01 00-00-00--2020-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2019-12-01 00-00-00--2020-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2019-12-01 00-00-00--2020-01-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - November 2019</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2019-11-01 00-00-00--2019-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2019-11-01 00-00-00--2019-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2019-11-01 00-00-00--2019-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2019-11-01 00-00-00--2019-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2019-11-01 00-00-00--2019-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2019-11-01 00-00-00--2019-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2019-11-01 00-00-00--2019-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2019-11-01 00-00-00--2019-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2019-11-01 00-00-00--2019-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2019-11-01 00-00-00--2019-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2019-11-01 00-00-00--2019-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2019-11-01 00-00-00--2019-12-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - October 2019</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2019-10-01 00-00-00--2019-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2019-10-01 00-00-00--2019-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2019-10-01 00-00-00--2019-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2019-10-01 00-00-00--2019-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2019-10-01 00-00-00--2019-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2019-10-01 00-00-00--2019-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2019-10-01 00-00-00--2019-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2019-10-01 00-00-00--2019-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2019-10-01 00-00-00--2019-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2019-10-01 00-00-00--2019-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2019-10-01 00-00-00--2019-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2019-10-01 00-00-00--2019-11-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - September 2019</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2019-09-01 00-00-00--2019-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2019-09-01 00-00-00--2019-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2019-09-01 00-00-00--2019-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2019-09-01 00-00-00--2019-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2019-09-01 00-00-00--2019-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2019-09-01 00-00-00--2019-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2019-09-01 00-00-00--2019-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2019-09-01 00-00-00--2019-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2019-09-01 00-00-00--2019-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2019-09-01 00-00-00--2019-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2019-09-01 00-00-00--2019-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2019-09-01 00-00-00--2019-10-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - August 2019</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2019-08-01 00-00-00--2019-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2019-08-01 00-00-00--2019-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2019-08-01 00-00-00--2019-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2019-08-01 00-00-00--2019-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2019-08-01 00-00-00--2019-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2019-08-01 00-00-00--2019-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2019-08-01 00-00-00--2019-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2019-08-01 00-00-00--2019-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2019-08-01 00-00-00--2019-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2019-08-01 00-00-00--2019-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2019-08-01 00-00-00--2019-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2019-08-01 00-00-00--2019-09-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - July 2019</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2019-07-01 00-00-00--2019-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2019-07-01 00-00-00--2019-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2019-07-01 00-00-00--2019-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2019-07-01 00-00-00--2019-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2019-07-01 00-00-00--2019-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2019-07-01 00-00-00--2019-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2019-07-01 00-00-00--2019-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2019-07-01 00-00-00--2019-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2019-07-01 00-00-00--2019-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2019-07-01 00-00-00--2019-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2019-07-01 00-00-00--2019-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2019-07-01 00-00-00--2019-08-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - June 2019</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2019-06-01 00-00-00--2019-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2019-06-01 00-00-00--2019-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2019-06-01 00-00-00--2019-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2019-06-01 00-00-00--2019-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2019-06-01 00-00-00--2019-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2019-06-01 00-00-00--2019-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2019-06-01 00-00-00--2019-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2019-06-01 00-00-00--2019-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2019-06-01 00-00-00--2019-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2019-06-01 00-00-00--2019-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2019-06-01 00-00-00--2019-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2019-06-01 00-00-00--2019-07-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+    <h2>Whirlpool - Samourai 1M sats - May 2019</h2>
+
+    <div class="container">   
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2019-05-01 00-00-00--2019-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2019-05-01 00-00-00--2019-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2019-05-01 00-00-00--2019-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2019-05-01 00-00-00--2019-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2019-05-01 00-00-00--2019-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2019-05-01 00-00-00--2019-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_norm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2019-05-01 00-00-00--2019-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2019-05-01 00-00-00--2019-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png?v2025-12-12" 
+                alt="whirlpool_1M/2019-05-01 00-00-00--2019-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_nums_notnorm.png" loading="lazy" />
+            </div>
+       
+            <div class="grid-item">
+            <img src="https://www.fi.muni.cz/~xsvenda/cjs/nightly_t/whirlpool_1M/2019-05-01 00-00-00--2019-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                data-full="https://www.fi.muni.cz/~xsvenda/cjs/nightly/whirlpool_1M/2019-05-01 00-00-00--2019-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png?v2025-12-12" 
+                alt="whirlpool_1M/2019-05-01 00-00-00--2019-06-01 00-00-00_unknown-static-100-1utxo/whirlpool_1M_input_types_values_norm.png" loading="lazy" />
+            </div>
+        </div>
+
+            </div>
+            <div id="lightbox">
+            <span class="close">&times;</span>
+            <span class="arrow left">&#10094;</span>
+            <img id="lightbox-img" src="" alt="">
+            <span class="arrow right">&#10095;</span>
+            </div>
+            
+            <script src="./js/lightbox.js?v1"></script>
+        </body>
+        </html>
+        

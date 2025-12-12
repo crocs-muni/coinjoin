@@ -1,0 +1,198 @@
+{   
+    "data_source": "/home/xsvenda/public_html/cjs/stable/",
+    "image_url": "https://www.fi.muni.cz/~xsvenda/cjs/stable/",
+    "thumbnail_url": "https://www.fi.muni.cz/~xsvenda/cjs/stable_t/",
+    "web_base": "https://crocs-muni.github.io/coinjoin/stable/",
+    "whitelist": ["input_types_nums_notnorm.png", "input_types_nums_norm.png", "input_types_values_norm.png", "input_types_values_notnorm.png"],
+    "pages":{
+        "index":{
+            "name":"Overview",
+            "paths":[
+                "/wasabi2/wasabi2_cummul_values_norm.png",
+                "/joinmarket_all/joinmarket_all_cummul_values_norm.png",
+                "/wasabi1/wasabi1_cummul_values_norm.png",
+                "/whirlpool/whirlpool_cummul_values_norm.png"
+            ]
+        },
+        "wasabi2":{
+            "name":"Wasabi 2",
+            "active": true,
+            "coordinators": [
+                {
+                    "large_images": [
+                        "/wasabi2/wasabi2_cummul_values_norm.png"
+                    ],
+                    "dir":"wasabi2",
+                    "name": "All coordinators"
+                },
+                {
+                    "large_images": [
+                        "/wasabi2_zksnacks/wasabi2_zksnacks_cummul_values_norm.png"
+                    ],
+                    "dir": "wasabi2_zksnacks",
+                    "name": "zkSNACKs"
+                },
+                {
+                    "large_images": [
+                        "/wasabi2_kruw/wasabi2_kruw_cummul_values_norm.png"
+                    ],
+                    "dir": "wasabi2_kruw",
+                    "name": "kruw.io",
+                    "active": true
+                },
+                {
+                    "large_images": [
+                        "/wasabi2_opencoordinator/wasabi2_opencoordinator_cummul_values_norm.png"
+                    ],
+                    "dir": "wasabi2_opencoordinator",
+                    "name": "opencoordinator.io",
+                    "active": true
+                },
+                {
+                    "large_images": [
+                        "/wasabi2_gingerwallet/wasabi2_gingerwallet_cummul_values_norm.png"
+                    ],
+                    "dir": "wasabi2_gingerwallet",
+                    "name": "gingerwallet.io",
+                    "active": true
+                },
+                {
+                    "large_images": [
+                        "/wasabi2_coinjoin_nl/wasabi2_coinjoin_nl_cummul_values_norm.png"
+                    ],
+                    "dir": "wasabi2_coinjoin_nl",
+                    "name": "coinjoin.nl",
+                    "active": true
+                },
+                {
+                    "large_images": [
+                        "/wasabi2_btip/wasabi2_btip_cummul_values_norm.png"
+                    ],
+                    "dir": "wasabi2_btip",
+                    "name": "btip.nl"
+                },
+                {
+                    "large_images": [
+                        "/wasabi2_mega/wasabi2_mega_cummul_values_norm.png"
+                    ],
+                    "dir": "wasabi2_mega",
+                    "name": "mega.cash"
+                },
+                {
+                    "large_images": [
+                        "/wasabi2_wasabicoordinator/wasabi2_wasabicoordinator_cummul_values_norm.png"
+                    ],
+                    "dir": "wasabi2_wasabicoordinator",
+                    "name": "wasabicoordinator.io"
+                },
+                {
+                    "large_images": [
+                        "/wasabi2_wasabist/wasabi2_wasabist_cummul_values_norm.png"
+                    ],
+                    "dir": "wasabi2_wasabist",
+                    "name": "wasabist.io"
+                },
+                {
+                    "large_images": [
+                        "/wasabi2_unknown_2024_e85631/wasabi2_unknown_2024_e85631_cummul_values_norm.png"
+                    ],
+                    "dir":"wasabi2_unknown_2024_e85631",
+                    "name":"unknown_2024_e85631"
+                },
+                {
+                    "large_images": [
+                        "/wasabi2_unknown_2024_28ce7b/wasabi2_unknown_2024_28ce7b_cummul_values_norm.png"
+                    ],
+                    "dir":"wasabi2_unknown_2024_28ce7b",
+                    "name":"unknown_2024_28ce7b"
+                }
+            ]
+        },
+        "wasabi1":{
+            "name":"Wasabi 1",
+            "coordinators": [
+                {
+                    "large_images": [
+                        "/wasabi1/wasabi1_cummul_values_norm.png"
+                    ],
+                    "dir": "wasabi1",
+                    "name": "All coordinators"
+                },
+                {
+                    "large_images": [
+                        "/wasabi1_zksnacks/wasabi1_zksnacks_cummul_values_norm.png"
+                    ],
+                    "dir": "wasabi1_zksnacks",
+                    "name": "zkSNACKs"
+                }
+            ]
+            
+        },
+        "whirlpool":{
+            "name":"Whirlpool",
+            "active": true,
+            "coordinators": [
+                {
+                    "large_images": [
+                        "/whirlpool/whirlpool_cummul_values_norm.png"
+                    ],
+                    "dir":"whirlpool",
+                    "name": "All pools"
+                },
+                {
+                    "large_images": [
+                        "/whirlpool_ashigaru_2_5M/whirlpool_ashigaru_2_5M_cummul_values_norm.png"
+                    ],
+                    "dir":"whirlpool_ashigaru_2_5M",
+                    "name":"Ashigaru 2.5M sats",
+                    "active": true
+                },
+                {
+                    "large_images": [
+                        "/whirlpool_ashigaru_25M/whirlpool_ashigaru_25M_cummul_values_norm.png"
+                    ],
+                    "dir":"whirlpool_ashigaru_25M",
+                    "name":"Ashigaru 25M sats",
+                    "active": true
+                },
+                {
+                    "large_images": [
+                        "/whirlpool_100k/whirlpool_100k_cummul_values_norm.png"
+                    ],
+                    "dir":"whirlpool_100k",
+                    "name":"Samourai 100k sats"
+                },
+                {
+                    "large_images": [
+                        "/whirlpool_1M/whirlpool_1M_cummul_values_norm.png"
+                    ],
+                    "dir":"whirlpool_1M",
+                    "name":"Samourai 1M sats"
+                },
+                {
+                    "large_images": [
+                        "/whirlpool_5M/whirlpool_5M_cummul_values_norm.png"
+                    ],
+                    "dir":"whirlpool_5M",
+                    "name":"Samourai 5M sats"
+                },
+                {
+                    "large_images": [
+                        "/whirlpool_50M/whirlpool_50M_cummul_values_norm.png"
+                    ],
+                    "dir":"whirlpool_50M",
+                    "name":"Samourai 50M sats"
+                }
+            ]
+        },
+
+        "joinmarket":{
+            "large_images": [
+                        "/joinmarket_all/joinmarket_all_cummul_values_norm.png"
+            ],
+            "name":"JoinMarket",
+            "dir": "joinmarket_all",
+            "active": true
+        }
+    }
+}
