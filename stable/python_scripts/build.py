@@ -30,6 +30,27 @@ class WebGenerator:
         self.whitelist = structure["whitelist"]
         
 
+    @staticmethod
+    def get_sort_key(filename):
+        """
+        Define sorting order for graph files:
+        1. Not normalized values (values_notnorm)
+        2. Normalized values (values_norm)
+        3. Not normalized # inputs (nums_notnorm)
+        4. Normalized # inputs (nums_norm)
+        """
+        if 'values_notnorm' in filename:
+            return (0, filename)
+        elif 'values_norm' in filename:
+            return (1, filename)
+        elif 'nums_notnorm' in filename:
+            return (2, filename)
+        elif 'nums_norm' in filename:
+            return (3, filename)
+        else:
+            # For any other files, sort alphabetically after the main 4
+            return (4, filename)
+
     def is_whitelisted(self, name):
         for w in self.whitelist:
             if w == name[-len(w):]:
@@ -147,6 +168,9 @@ class WebGenerator:
                     output += f"    <h{depth + 1}>" + name_start + month_year + f"</h{depth + 1}>\n\n"
                 else:
                     output += f"    <h{depth + 1}>" + name_start + dir_name + f"</h{depth + 1}>\n\n"
+            
+            # Sort filenames deterministically using custom sort key
+            filenames.sort(key=self.get_sort_key)
             
             if len(filenames) > 0:
                 output += '    <div class="container">'
