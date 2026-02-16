@@ -150,6 +150,7 @@ class WebGenerator:
             if len(filenames) > 0:
                 output += '    <div class="container">'
 
+            filenames.sort(reverse=True)
             for filename in filenames:
                 if not self.is_whitelisted(filename):
                     continue
