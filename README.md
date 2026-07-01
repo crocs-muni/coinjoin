@@ -3,6 +3,9 @@
 Tools and data pipelines for analyzing and visualizing CoinJoin activity across major implementations: JoinMarket, Wasabi 1, Wasabi 2 and Whirlpool.
 The project focuses on CoinJoin liquidity tracking, transaction processing, chain analysis, and visualizations.
 
+<img width="2509" height="769" alt="cj_pipeline" src="https://github.com/user-attachments/assets/fb24d277-8b5a-4b53-b2af-007ab666e27d" />
+
+
 ## Resources
 
 * **Daily CoinJoin liquidity updates:** [web](https://crocs-muni.github.io/coinjoin/j)
