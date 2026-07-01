@@ -21,10 +21,11 @@ The project focuses on CoinJoin liquidity tracking, transaction processing, chai
 
 ## Related Projects
 
-* **LiquiSabi.com coinjoin real-time statistics** [web](https://github.com/turbolay/LiquiSabi/)
-* **WalletWasabi coinjoin wallet** [repo](https://github.com/WalletWasabi/WalletWasabi)
-* **Original Dumplings** [repo](https://github.com/nopara73/Dumplings)
-* **Original BlockSci** [repo](https://github.com/citp/BlockSci)
+* **Wabisator.com coinjoin real-time statistics:** [web](Wabisator - Wabisabi Coordinators List)
+* **LiquiSabi.com coinjoin real-time statistics:** [web](https://github.com/turbolay/LiquiSabi/)
+* **WalletWasabi coinjoin wallet:** [repo](https://github.com/WalletWasabi/WalletWasabi)
+* **Original Dumplings (outdated):** [repo](https://github.com/nopara73/Dumplings)
+* **Original BlockSci (not maintained):** [repo](https://github.com/citp/BlockSci)
 
 
 
