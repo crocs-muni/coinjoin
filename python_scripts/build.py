@@ -63,7 +63,7 @@ class WebGenerator:
         <link rel="icon" type="image/x-icon" href="favicon.ico">
         </head>
         <body>
-            <p class=banner>This is a nightly build. If nightly is broken, visit a stable version: <a href=https://crocs-muni.github.io/coinjoin/stable/index.html>https://crocs-muni.github.io/coinjoin/stable/index.html</a></p>
+            <p class=banner>💡Try new interactive version: <a href=https://www.fi.muni.cz/~xsvenda/cjs/interactive/coinjoin-explorer-offline.html>https://www.fi.muni.cz/~xsvenda/cjs/interactive/coinjoin-explorer-offline.html</a></p>
             <header>
             <h1>CoinJoin Statistics</h1>
             <p class="update">Last updated: {date}</p>
