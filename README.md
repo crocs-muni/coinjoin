@@ -15,7 +15,7 @@ The project focuses on CoinJoin liquidity tracking, transaction processing, chai
 
 ## Publications
 
-* **CoinJoin ecosystem insights for Wasabi 1.x, Wasabi 2.x and Whirlpool coordinator-based privacy mixers**, Petr Svenda, Jiri Gavenda, Vasilios Mavroudis, Chris Hicks , PETS'25, 2026, [paper](https://crocs.fi.muni.cz/public/papers/coinjoins_pets26)
+* **CoinJoin ecosystem insights for Wasabi 1.x, Wasabi 2.x and Whirlpool coordinator-based privacy mixers**, Petr Svenda, Jiri Gavenda, Vasilios Mavroudis, Chris Hicks , PETS'26, 2026, [paper](https://crocs.fi.muni.cz/public/papers/coinjoins_pets26)
   
 * **Analysis of Input-Output Mappings in Coinjoin Transactions with Arbitrary Values**, Jiri Gavenda, Petr Svenda, Stanislav Boboň, Vladimir Sedlacek, ESORICS'25, 2025, [paper](https://crocs.fi.muni.cz/public/papers/coinjoins_esorics25)
 
