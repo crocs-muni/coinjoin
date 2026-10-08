@@ -8,7 +8,7 @@ The project focuses on CoinJoin liquidity tracking, transaction processing, chai
 
 ## Resources
 
-* **Daily CoinJoin liquidity updates:** [web](https://crocs-muni.github.io/coinjoin/j)
+* **Daily CoinJoin liquidity updates:** [web](https://crocs-muni.github.io/coinjoin/)
 * **CoinJoin processing, analysis, and visualization software:** [repo](https://github.com/crocs-muni/coinjoin-analysis)
 * **Updated fork of Dumplings CoinJoin analysis software:** [repo](https://github.com/crocs-muni/Dumplings/)
 * **Updated fork of BlockSci chain-analysis software:** [repo](https://github.com/crocs-muni/BlockSci/)
